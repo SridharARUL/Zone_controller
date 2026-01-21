@@ -1,0 +1,21 @@
+# Build folders
+Debug/
+Release/
+build/
+
+# Object files
+*.o
+*.elf
+*.hex
+*.bin
+
+# IDE / Editor files
+.vscode/
+*.swp
+*.tmp
+
+# Makefile
+Makefile
+
+# Backup files
+*~
