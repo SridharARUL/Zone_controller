@@ -1,0 +1,6 @@
+../Core/Src/Soil_moisture.c:27:10:ModbusCRC16	4
+../Core/Src/Soil_moisture.c:56:9:Check_CRC	3
+../Core/Src/Soil_moisture.c:70:19:Send_MODBUS_Command	2
+../Core/Src/Soil_moisture.c:108:19:Request_Consumption	1
+../Core/Src/Soil_moisture.c:120:9:Get_Consumption	6
+../Core/Src/Soil_moisture.c:186:19:Write_Single_Register	4

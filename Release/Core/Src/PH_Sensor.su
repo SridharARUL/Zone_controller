@@ -1,0 +1,5 @@
+../Core/Src/PH_Sensor.c:32:6:sortSamples	32	static
+../Core/Src/PH_Sensor.c:44:10:getMedian	16	static
+../Core/Src/PH_Sensor.c:48:7:calculateConfidence	40	static
+../Core/Src/PH_Sensor.c:61:7:convertPHfromAnalog	40	static
+../Core/Src/PH_Sensor.c:91:7:get_PH	24	static

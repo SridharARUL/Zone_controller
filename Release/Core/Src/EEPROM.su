@@ -1,0 +1,4 @@
+../Core/Src/EEPROM.c:43:6:write_EEPROM	304	static
+../Core/Src/EEPROM.c:144:6:read_EEPROM	16	static
+../Core/Src/EEPROM.c:228:6:backup_write_EEPROM	352	static
+../Core/Src/EEPROM.c:350:6:backup_read_EEPROM	48	static

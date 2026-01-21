@@ -1,0 +1,13 @@
+../Core/Src/VEML7700.c:70:17:writeRegister	32	static
+../Core/Src/VEML7700.c:76:16:readRegister	40	static
+../Core/Src/VEML7700.c:86:10:VEML7700_Power_On	8	static
+../Core/Src/VEML7700.c:91:10:VEML7700_Shutdown	16	static
+../Core/Src/VEML7700.c:99:10:VEML7700_SetALSIntegrationTime	24	static
+../Core/Src/VEML7700.c:107:10:VEML7700_GetALSIntegrationTime	16	static
+../Core/Src/VEML7700.c:113:10:VEML7700_SetALSGain	24	static
+../Core/Src/VEML7700.c:122:10:VEML7700_GetALSGain	16	static
+../Core/Src/VEML7700.c:128:10:VEML7700_ReadALSData	8	static
+../Core/Src/VEML7700.c:133:10:VEML7700_ReadWhiteData	8	static
+../Core/Src/VEML7700.c:138:7:VEML7700_Convert2Lx	24	static
+../Core/Src/VEML7700.c:142:19:PowerOnVEML7700	16	static
+../Core/Src/VEML7700.c:150:7:VEML7700_GetLx	16	static

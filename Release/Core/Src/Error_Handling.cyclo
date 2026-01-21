@@ -1,0 +1,6 @@
+../Core/Src/Error_Handling.c:14:9:TP4_Modbus_error	6
+../Core/Src/Error_Handling.c:26:9:Light_Error	2
+../Core/Src/Error_Handling.c:55:9:HT_Error	2
+../Core/Src/Error_Handling.c:70:9:TP4_Terror	1
+../Core/Src/Error_Handling.c:80:9:Ec_Error	2
+../Core/Src/Error_Handling.c:90:9:pH_error	4

@@ -1,0 +1,5 @@
+../Core/Src/WaterTempSensor.c:13:6:TEMP_delay	2
+../Core/Src/WaterTempSensor.c:22:9:ds18b20_init	3
+../Core/Src/WaterTempSensor.c:46:6:ds18b20_write	3
+../Core/Src/WaterTempSensor.c:61:9:ds18b20_read	3
+../Core/Src/WaterTempSensor.c:85:7:Temperature_Read	6

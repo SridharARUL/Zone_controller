@@ -1,0 +1,11 @@
+../Core/Src/sys_control.c:47:9:waterlevel	24	static
+../Core/Src/sys_control.c:97:6:valvecont	16	static
+../Core/Src/sys_control.c:146:6:nutrientdosage	24	static
+../Core/Src/sys_control.c:361:6:waterpump	32	static
+../Core/Src/sys_control.c:440:6:ECpumperror	8	static
+../Core/Src/sys_control.c:465:6:pHdownpumperror	8	static
+../Core/Src/sys_control.c:483:6:pHuppumperror	8	static
+../Core/Src/sys_control.c:505:9:TP4_curtain_O_P	32	static
+../Core/Src/sys_control.c:541:9:TP4_fogger_O_P	32	static
+../Core/Src/sys_control.c:580:6:TP4_Decode_Outputs	16	static
+../Core/Src/sys_control.c:608:6:TP4_cirulation_Fan	16	static

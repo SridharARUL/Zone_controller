@@ -1,0 +1,15 @@
+../Core/Src/FA_RS485.c:74:9:Check_CRC_FA	24	static
+../Core/Src/FA_RS485.c:88:10:Get_Register_Value	24	static
+../Core/Src/FA_RS485.c:205:6:Modbus_StartReception	8	static
+../Core/Src/FA_RS485.c:216:6:HAL_UART_RxCpltCallback	16	static
+../Core/Src/FA_RS485.c:253:6:Handle_Read_Registers	144	static
+../Core/Src/FA_RS485.c:287:6:Handle_Write_Multiple_Registers	64	static
+../Core/Src/FA_RS485.c:460:6:Handle_Write_Single_Register	48	static
+../Core/Src/FA_RS485.c:503:6:Process_Slave_Request	16	static
+../Core/Src/FA_RS485.c:546:6:Process_UART2_Command	664	static
+../Core/Src/FA_RS485.c:646:6:Send_Sensor_Data	680	static
+../Core/Src/FA_RS485.c:689:6:Send_Status_Data	392	static
+../Core/Src/FA_RS485.c:721:6:Send_Error_Data	376	static
+../Core/Src/FA_RS485.c:751:6:Send_SoilMoisture	576	static
+../Core/Src/FA_RS485.c:797:6:Handle_Setpoint_Frame	104	static
+../Core/Src/FA_RS485.c:864:6:Print_All_Variables	64	static
