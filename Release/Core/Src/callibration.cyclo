@@ -1,4 +1,0 @@
-../Core/Src/callibration.c:39:6:HAL_GPIO_EXTI_Falling_Callback	2
-../Core/Src/callibration.c:51:6:CheckButtonPress	14
-../Core/Src/callibration.c:169:9:AnyLEDActive	6
-../Core/Src/callibration.c:174:6:UpdateLEDTimers	11

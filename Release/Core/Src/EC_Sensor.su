@@ -1,2 +1,0 @@
-../Core/Src/EC_Sensor.c:41:7:convertECfromAnalog	24	static
-../Core/Src/EC_Sensor.c:64:7:get_EC	16	static
