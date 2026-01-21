@@ -1,3 +1,0 @@
-../Core/Src/HTU21D.c:21:7:gethumidity	24	static
-../Core/Src/HTU21D.c:36:7:get_Temp	24	static
-../Core/Src/HTU21D.c:51:10:adc_sample	16	static

@@ -12,7 +12,7 @@
 #include "stdbool.h"
 extern ADC_HandleTypeDef hadc1;
 
-#define sampleSize 10
+#define sampleSize 20
 extern char buffer[100];
 uint16_t ADC_SAMPLE[10],ADCrawvalue;
 float Humvalue,growTempvalue;

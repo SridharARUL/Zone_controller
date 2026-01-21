@@ -1,6 +1,0 @@
-../Core/Src/Digital_input.c:13:9:waterlevel1	1
-../Core/Src/Digital_input.c:20:9:waterlevel2	1
-../Core/Src/Digital_input.c:29:9:Ec_A_Level	6
-../Core/Src/Digital_input.c:64:9:Ec_B_Level	6
-../Core/Src/Digital_input.c:94:9:pH_Up_Level	6
-../Core/Src/Digital_input.c:124:9:pH_Down_Level	6
