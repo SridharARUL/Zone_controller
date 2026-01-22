@@ -30,13 +30,16 @@ char buf[250];
 #define SLAVE_ID 0x01
 
 #define UART2_MAX_FRAME     256
-#define UART2_RX_BUFFER    1
+
+
 
 uint8_t  uart2_rx_byte;
 char    uart2_rx_buf[UART2_MAX_FRAME];
 uint16_t uart2_rx_len = 0;
-extern uint16_t soilmoisuture[12];
-extern uint32_t Total_no_mois;
+
+
+extern int16_t soilmoisuture[12];
+
 
 extern uint16_t soil_errorSensors;
 extern float Wtemp, pH, Ec, Lux, hum_Value, Temp_value;
@@ -573,6 +576,9 @@ void Process_UART2_Command(void)
         (uint16_t)(last_comma - frame)
     );
 
+    sprintf(buf, "Rx CRC: %04X, Calc CRC: %04X\r\n", rx_crc, calc_crc);
+    HAL_UART_Transmit(&huart2, (uint8_t*)buf, strlen(buf), HAL_MAX_DELAY);
+
     if (rx_crc != calc_crc)
         return;
 
@@ -597,17 +603,20 @@ void Process_UART2_Command(void)
         Send_Sensor_Data();
 
     else if (cmd_count == 2 && cmd[0] == 0 && cmd[1] == 2)
-        Send_Status_Data();
+    	Send_SoilMoisture();
+
 
     else if (cmd_count == 2 && cmd[0] == 0 && cmd[1] == 3)
         Send_Error_Data();
 
     else if (cmd_count == 2 && cmd[0] == 0 && cmd[1] == 4)
-        Send_SoilMoisture();
+    	 Send_Status_Data();
 
-    else if (cmd_count == 2 && cmd[0] == 0 &&
-            (cmd[1] == 5))
+    else if (cmd[0] == 0 && cmd[1] == 7 && cmd_count > 2){
+    	sprintf(buf, "Setpoint frame received\r\n");
+               			  HAL_UART_Transmit(&huart2, (uint8_t*)buf, strlen(buf), HAL_MAX_DELAY);
         Handle_Setpoint_Frame(frame);
+    }
 
     else if (cmd_count == (2 + (MAX_SCHEDULES * 5)) &&
              cmd[0] == 0 && cmd[1] == 6)
@@ -691,7 +700,7 @@ void Send_Status_Data(){
 	 char payload[128];
 
 	    int len = snprintf(payload, sizeof(payload),
-	        "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",2,
+	        "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",4,
 	        valvestatus,
 	        waterpump_status,
 	        EcA_status,
@@ -760,7 +769,7 @@ void Send_SoilMoisture(void)
     /* Add sensor count */
     len += snprintf(payload + len,
                     sizeof(payload) - len,
-                    "%d,%lu",4,
+                    "%d,%lu",2,
                     Total_no_mois);
 
     /* Add moisture values */
@@ -798,9 +807,9 @@ void Handle_Setpoint_Frame(char *frame)
 {
     char *token;
 
-    /* Skip CMD bytes (0,5) */
+    /* Skip CMD bytes (0,7) */
     token = strtok(frame, ","); // 0
-    token = strtok(NULL, ",");  // 5
+    token = strtok(NULL, ",");  // 7
 
     /* Extract values in exact order */
 
@@ -817,8 +826,8 @@ void Handle_Setpoint_Frame(char *frame)
     PumpON_setpoint = atol(strtok(NULL, ","));
     PumpOff_setpoint = atol(strtok(NULL, ","));
 
-    Ec_PumpEr_setpoint = atol(strtok(NULL, ","));
-    pH_PumpEr_setpoint = atol(strtok(NULL, ","));
+    Ec_PumpEr_setpoint = atof(strtok(NULL, ","));
+    pH_PumpEr_setpoint = atof(strtok(NULL, ","));
 
     LUX_MINsetpoint = atol(strtok(NULL, ","));
     LUX_MAXsetpoint = atol(strtok(NULL, ","));
@@ -836,19 +845,26 @@ void Handle_Setpoint_Frame(char *frame)
     nutrient_ON_sec = atol(strtok(NULL, ","));
     nutrient_setpoint = atol(strtok(NULL, ","));
 
+    /* Send response with all received values: 7,EC,Ecdose_sec,Ecdose_cycle,...,nutrient_setpoint,CRC */
+    char payload[256];
+    int len = snprintf(payload, sizeof(payload),
+        "7,%.2f,%lu,%lu,%.2f,%.2f,%lu,%lu,%lu,%lu,%.2f,%.2f,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
+        EC_Setpoint, Ecdose_sec, Ecdose_cycle,
+        pH_min, pH_max,
+        pHdose_sec, pHdose_cycle,
+        PumpON_setpoint, PumpOff_setpoint,
+        Ec_PumpEr_setpoint, pH_PumpEr_setpoint,
+        LUX_MINsetpoint, LUX_MAXsetpoint,
+        HUM_FOG_MINsetpoint, HUM_FOG_MAXsetpoint, HUM_FOG_WaitTime,
+        Total_no_mois, circulationfan_setpoint,
+        pump_auto_Man, nutrient_ON_sec, nutrient_setpoint);
 
-    char ack[64];
-    int len = snprintf(ack, sizeof(ack), "0,5,1");
+    uint16_t crc = ModbusCRC16((uint8_t*)payload, len);
 
-    uint16_t crc = ModbusCRC16((uint8_t *)ack, len);
+    char tx[300];
+    int tx_len = snprintf(tx, sizeof(tx), "%s,%04X\n", payload, crc);
 
-    len += snprintf(ack + len, sizeof(ack) - len,
-                    ",%04X\r\n", crc);
-
-    HAL_UART_Transmit(&huart2,
-                      (uint8_t *)ack,
-                      len,
-                      HAL_MAX_DELAY);
+    HAL_UART_Transmit(&huart2, (uint8_t*)tx, tx_len, HAL_MAX_DELAY);
 }
 
 

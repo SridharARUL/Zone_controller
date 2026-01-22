@@ -340,7 +340,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   PowerOnVEML7700();
 
-  sprintf(buffer, "reset............\r\n");
+	sprintf(buffer, "reset............\r\n");
   HAL_UART_Transmit(&huart2, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
 
